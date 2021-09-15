@@ -6,14 +6,16 @@ export const NewsContext = createContext();
 export const NewsContextProvider = (props) => {
   const [data, setData] = useState();
 
-  useEffect(() => {
-    axios
-      .get(
-        `https://newsapi.org/v2/everything?q=tesla&from=2021-08-15&sortBy=publishedAt&apiKey=${process.env.REACT_APP_API_KEY}`
-      )
-      .then((response) => setData(response.data))
-      .catch((error) => console.log(error));
-  }, []);
+ const newslist =async()=>{
+  const response =await fetch(
+    `https://newsapi.org/v2/everything?q=tesla&from=2021-08-15&sortBy=publishedAt&apiKey=${process.env.REACT_APP_API_KEY}`
+  )
+  setData(await response.json())
+ } 
+
+  useEffect(()=>{
+    newslist();
+  },[])
 
   return (
     <NewsContext.Provider value={{ data }}>
