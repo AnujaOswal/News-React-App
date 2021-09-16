@@ -8,7 +8,7 @@ export const NewsContextProvider = (props) => {
 
  const newslist =async()=>{
   const response =await fetch(
-    `https://newsapi.org/v2/everything?q=tesla&from=2021-08-15&sortBy=publishedAt&apiKey=${process.env.REACT_APP_API_KEY}`
+    `https://gnews.io/api/v4/search?q=example&token=${process.env.REACT_APP_API_KEY}`
   )
   setData(await response.json())
  } 
